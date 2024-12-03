@@ -1,25 +1,16 @@
+
 const toggleThemeButton = document.getElementById('toggle-theme');
 const body = document.body;
 
 const showLoginButton = document.getElementById('show-login');
-const showRegisterButton = document.getElementById('show-register');
+const errorMessage = document.getElementById('error-message');
 const loginForm = document.getElementById('login-form');
-const registerForm = document.getElementById('register-form');
 const sendLogin = document.getElementById('btn-login');
 
 toggleThemeButton.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
 });
 
-showLoginButton.addEventListener('click', () => {
-    toggleForms(loginForm, registerForm);
-    setActiveButton(showLoginButton, showRegisterButton);
-});
-
-showRegisterButton.addEventListener('click', () => {
-    toggleForms(registerForm, loginForm);
-    setActiveButton(showRegisterButton, showLoginButton);
-});
 
 function toggleForms(showForm, hideForm) {
     hideForm.classList.remove('active');
@@ -31,22 +22,29 @@ function setActiveButton(activeButton, inactiveButton) {
     inactiveButton.classList.remove('active');
 }
 
-sendLogin.addEventListener('click', () => {
+sendLogin.addEventListener('click', async function getUser(){
+    var email = document.getElementById('login-email').value;
 
+    var response = await loggin('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/GetPersonByEmail?Email='+email);
+    
+    errorMessage.textContent = response.Errors[0];
 });
 
-async function getData() {
-    const url = "https://example.org/products.json";
+async function loggin(url) {
     try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
+        var response = await fetch(url);
+        
+        if (response.status == 200) {
+            var user = await response.json();
 
-        const json = await response.json();
-        console.log(json);
+            localStorage.setItem("usuario_logado", JSON.stringify(user));
+            window.location.href = 'teste.html';
+        }
+        else{
+            return await response.json();
+        }
     } catch (error) {
-        console.error(error.message);
+        return error;
     }
 }
 
