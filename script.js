@@ -5,6 +5,7 @@ const showLoginButton = document.getElementById('show-login');
 const showRegisterButton = document.getElementById('show-register');
 const loginForm = document.getElementById('login-form');
 const registerForm = document.getElementById('register-form');
+const sendLogin = document.getElementById('btn-login');
 
 toggleThemeButton.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
@@ -29,3 +30,23 @@ function setActiveButton(activeButton, inactiveButton) {
     activeButton.classList.add('active');
     inactiveButton.classList.remove('active');
 }
+
+sendLogin.addEventListener('click', () => {
+
+});
+
+async function getData() {
+    const url = "https://example.org/products.json";
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
