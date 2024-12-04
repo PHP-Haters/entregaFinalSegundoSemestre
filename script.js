@@ -27,7 +27,9 @@ sendLogin.addEventListener('click', async function getUser(){
 
     var response = await loggin('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/GetPersonByEmail?Email='+email);
     
-    errorMessage.textContent = response.Errors[0];
+    for (let index = 0; index < response.Errors.length; index++) {
+        errorMessage.textContent += '<br>' + response.Errors[index];
+    }
 });
 
 async function loggin(url) {
@@ -38,7 +40,7 @@ async function loggin(url) {
             var user = await response.json();
 
             localStorage.setItem("usuario_logado", JSON.stringify(user));
-            window.location.href = 'teste.html';
+            window.location.href = 'boards.html';
         }
         else{
             return await response.json();
