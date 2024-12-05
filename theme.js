@@ -1,5 +1,11 @@
 const darkModeBotao = document.getElementById('dark-mode-button');
 const errorMessage = document.getElementById('error-message');
+const body = document.body;
+
+
+darkModeBotao.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+});
 
 darkModeBotao.addEventListener('click', async function getUserId(){
     let themeType; 

@@ -1,15 +1,12 @@
 
 const toggleThemeButton = document.getElementById('toggle-theme');
-const body = document.body;
 
 const showLoginButton = document.getElementById('show-login');
 const errorMessage = document.getElementById('error-message');
 const loginForm = document.getElementById('login-form');
 const sendLogin = document.getElementById('btn-login');
 
-toggleThemeButton.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-});
+
 
 
 function toggleForms(showForm, hideForm) {
