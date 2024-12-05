@@ -1,0 +1,30 @@
+/* Estilos existentes */
+/* (cole aqui os estilos do arquivo styles.css que você já tem) */
+.page-title{
+    width: 100%;
+    text-align: center;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    justify-items: center;
+}
+
+.card {
+    width: 300px;
+    height: 90px;
+    background-color: var(--background-color-light);
+    border: 1px solid #ccc;
+    overflow: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
