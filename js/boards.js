@@ -19,7 +19,9 @@ async function fetchData() {
             `;
             cardsContainer.appendChild(card);
             document.getElementById(`${item.Id}`).addEventListener('click', function(){
-                window.location.href = 'columns.html?columnId='+item.Id;
+                localStorage.removeItem('boardId');
+                localStorage.setItem('boardId', `${item.Id}`);
+                window.location.href = 'columns.html';
             })
         });
     } catch (error) {
