@@ -14,6 +14,8 @@ async function fetchData() {
             card.id = `${item.Id}`;
             card.innerHTML = `
                 <h3>${item.Name}</h3>
+                <hr />
+                <p>${item.Description}</p>
             `;
             cardsContainer.appendChild(card);
             document.getElementById(`${item.Id}`).addEventListener('click', function(){
