@@ -1,0 +1,110 @@
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container{
+    width: 40%;
+    height: 50%;
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    display: flex;
+    align-items: center;
+}
+
+.login-container .info-div, .login-container .login-section, #login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container .info-div{
+    width: 50%;
+    height: 100%;
+    background-image: linear-gradient(
+        320deg,
+        hsl(11deg 90% 58%) 0%,
+        hsl(9deg 89% 58%) 10%,
+        hsl(8deg 89% 59%) 17%,
+        hsl(6deg 89% 59%) 24%,
+        hsl(4deg 88% 60%) 30%,
+        hsl(2deg 88% 60%) 37%,
+        hsl(0deg 87% 60%) 43%,
+        hsl(358deg 87% 60%) 50%,
+        hsl(356deg 87% 59%) 57%,
+        hsl(354deg 87% 58%) 66%,
+        hsl(352deg 87% 57%) 75%,
+        hsl(350deg 87% 56%) 86%,
+        hsl(348deg 87% 54%) 100%
+    );
+    border-radius: 10px 0 0 10px;
+    color: #FFF;
+}
+
+.login-container .info-div p{
+    width: 80%;
+    margin-top: 30px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.login-container .login-section{
+    width: 50%;
+    height: 100%;
+}
+
+#login-form{
+    height: 60%;
+    justify-content: space-around;
+}
+
+#login-form h2{
+    font-size: 28px;
+}
+
+#login-form input, #login-form button{
+    padding: 18px;
+    background-color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#login-form input{
+    width: 65%;
+}
+
+#login-form button{
+    padding: 13px 18px;
+    background-image: linear-gradient(
+        320deg,
+        hsl(11deg 90% 58%) 0%,
+        hsl(9deg 89% 58%) 10%,
+        hsl(8deg 89% 59%) 17%,
+        hsl(6deg 89% 59%) 24%,
+        hsl(4deg 88% 60%) 30%,
+        hsl(2deg 88% 60%) 37%,
+        hsl(0deg 87% 60%) 43%,
+        hsl(358deg 87% 60%) 50%,
+        hsl(356deg 87% 59%) 57%,
+        hsl(354deg 87% 58%) 66%,
+        hsl(352deg 87% 57%) 75%,
+        hsl(350deg 87% 56%) 86%,
+        hsl(348deg 87% 54%) 100%
+    );
+    color: #FFF;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#login-form #error-message{
+    width: 75%;
+    text-align: center;
+    line-height: 1.4;
+    font-weight: 600;
+    color: hsl(348, 86%, 50%);
+}

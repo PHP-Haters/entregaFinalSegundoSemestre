@@ -1,5 +1,3 @@
-const toggleThemeButton = document.getElementById('toggle-theme');
-const showLoginButton = document.getElementById('show-login');
 const errorMessage = document.getElementById('error-message');
 const loginForm = document.getElementById('login-form');
 const sendLogin = document.getElementById('btn-login');
@@ -19,7 +17,7 @@ sendLogin.addEventListener('click', async function getUser(){
 
     var response = await loggin('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/GetPersonByEmail?Email='+email);
 
-    errorMessage.textContent = response.Errors[0];
+    errorMessage.textContent = 'Erro: ' + response.Errors[0];
 });
 
 async function loggin(url) {

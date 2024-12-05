@@ -1,5 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 :root {
-    --background-color-light: #ffffff;
+    --background-color-light: #f4f4f4;
     --text-color-light: #000000;
     --background-color-dark: #121212;
     --text-color-dark: #ffffff;
@@ -21,63 +26,3 @@ body.dark-mode {
     color: var(--text-color-dark);
 }
 
-.container {
-    max-width: 400px;
-    margin: 50px auto;
-    text-align: center;
-}
-
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: var(--button-bg);
-    color: var(--button-text);
-    transition: opacity 0.3s;
-}
-
-button:hover {
-    opacity: 0.9;
-}
-
-input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-form {
-    display: none;
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.3s, transform 0.3s;
-}
-
-form.active {
-    display: block;
-    opacity: 1;
-    transform: scale(1);
-}
-
-.form-switch {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.form-switch button {
-    background-color: transparent;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.form-switch button.active {
-    border-bottom: 2px solid var(--button-bg);
-    font-weight: bold;
-}
