@@ -47,19 +47,3 @@ async function loggin(url) {
         return error;
     }
 }
-
-async function changeConfig() {
-    var PersonId = 6;
-    
-    const response = fetch(`https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/ConfigPersonTheme?PersonId=${PersonId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            "ThemeId": 2
-        }),
-      });
-    response.then(response => response.json());
-    response.then(data => console.log(data));
-}
