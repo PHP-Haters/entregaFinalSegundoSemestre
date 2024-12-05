@@ -11,3 +11,10 @@ logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('usuario_logado');
     location.href = '/index.html';
 });
+
+//Redireciona para a página do usuário
+const userSection = document.querySelector('.user-section');
+
+userSection.addEventListener('click', () => {
+    location.href = '/user.html';
+});
