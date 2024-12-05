@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     fetchData();
 });
@@ -18,7 +17,7 @@ async function fetchData() {
             `;
             cardsContainer.appendChild(card);
             document.getElementById(`${item.Id}`).addEventListener('click', function(){
-                window.location.href = 'colunas.html?columnId='+item.Id;
+                window.location.href = 'columns.html?columnId='+item.Id;
             })
         });
     } catch (error) {

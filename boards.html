@@ -3,23 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painéis de Tarefas</title>
+    <title>Boards</title>
     <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/boards_style.css">
+    <link rel="stylesheet" href="/css/boards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-    <nav>
-        <input id="dark-mode-button" type="radio">
-        <label>Dark</label>
-    </nav>
+    <header>
+        <div class="logo-div">
+            <i class="fa-solid fa-chart-simple"></i>
+            <h1>TaskBoard</h1>
+        </div>
 
+        <nav>
+            <a href="./boards.html">Quadros</a>
+            <button>Logout</button>
+        </nav>
 
-    <h1 class="page-title">Painéis de Tarefas</h1>
+        <div id="switch-holder">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="user-section">
+            <span id="username-section"><!-- Aqui vai o nome do usuário logado --></span>
+            <i class="fa-solid fa-user"></i>
+        </div>
+    </header>
+
+    <!-- <h1 class="page-title">Painéis de Tarefas</h1>
     <div id="cards-container" class="grid-container">
-        <!-- Os cards serão inseridos aqui via JavaScript -->
-    </div>
+
+    </div> -->
+
     <script src="/js/boards.js"></script>
     <script src="/js/theme.js"></script>
+    <script src="/js/global.js"></script>
 </body>
 </html>
