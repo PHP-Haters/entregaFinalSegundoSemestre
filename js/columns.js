@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     fetchData().then(() => {
         geraItensPorColuna();
     });
@@ -34,9 +34,9 @@ async function geraItensPorColuna() {
 async function fetchData() {
     try {
         const boardId = localStorage.getItem('boardId');
-        const response = await fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/ColumnByBoardId?BoardId='+boardId); // Substitua com a URL da API
+        const response = await fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/ColumnByBoardId?BoardId=' + boardId); // Substitua com a URL da API
         const items = await response.json();
-        
+
         const cardsContainer = document.getElementById('cards-container');
         items.forEach(item => {
             const card = document.createElement('div');
@@ -50,5 +50,37 @@ async function fetchData() {
         });
     } catch (error) {
         console.error('Erro ao buscar dados:', error);
+    }
+}
+
+async function criaNovaColuna() {
+    var boardId = localStorage.getItem('boardId');
+    var userId = JSON.parse(localStorage.getItem('usuario_logado')).Id;
+    
+    try {
+        const response = await fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Column', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "BoardId": boardId,
+                "Name": "teste",
+                "Position": "0",
+                "IsActive": "true",
+                "CreatedBy": userId,
+                "UpdatedBy": userId
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json(); // Assumindo que a API retorna dados em formato JSON
+
+        return result;
+    } catch (error) {
+        console.error('Erro ao enviar dados:', error);
     }
 }
