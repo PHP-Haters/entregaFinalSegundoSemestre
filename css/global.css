@@ -67,9 +67,11 @@ header nav{
 
 header nav a, header nav button{
     font-size: 17px;
+    transition: 0.5s all ease-in-out;
 }
 
 header nav a{
+    padding: 12px;
     color: #FFF;
     text-decoration: none;
 }
@@ -83,9 +85,17 @@ header nav button{
 }
 
 header .user-section{
+    padding: 10px 16px;
     position: absolute;
     right: 30px;
     justify-content: space-between;
+    transition: 0.5s all ease-in-out;
+}
+
+header .user-section:hover, header a:hover{
+    cursor: pointer;
+    background-color: hsla(0, 88%, 47%, 0.607);
+    border-radius: 10px;
 }
 
 header .user-section span, header .user-section i{

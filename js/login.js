@@ -7,6 +7,7 @@ form.addEventListener('submit', sendFormData);
 sendLogin.addEventListener('click', sendFormData);
 
 async function sendFormData(event){
+    event.preventDefault();
     var email = document.getElementById('login-email').value;
 
     var response = await loggin('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/GetPersonByEmail?Email='+email);
