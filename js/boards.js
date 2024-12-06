@@ -53,7 +53,7 @@ function updateScreen(boards){
         // Adicionando o botão "Deletar"
         const deleteButton = document.createElement('button');
         deleteButton.className = 'delete-btn';
-        deleteButton.textContent = 'Deletar';
+        deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
 
         // Associando a função deleteBoard ao botão
         deleteButton.addEventListener('click', function (event) {
