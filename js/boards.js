@@ -1,4 +1,47 @@
 import api from "./api.js";
+import { loggedUser } from './global.js';
+
+const boardForm = document.getElementById("board-form");
+const boardFormSubmit = document.getElementById("submit-board");
+
+boardForm.addEventListener('submit', postBoard);
+boardFormSubmit.addEventListener('click', postBoard);
+
+async function postBoard(event){
+    event.preventDefault();
+
+    let boardName = document.getElementById("board-name");
+    let boardDesc = document.getElementById("board-desc");
+
+    try {
+        const response = await fetch(api + 'Board', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "Name": boardName.value,
+                "Description": boardDesc.value,
+                "CreatedBy": loggedUser.Id,
+            })
+        });
+
+        const res = await response.json();
+        if(res.Errors){
+            console.log(res.Errors[0])
+            throw new Error(res.Errors[0]);
+        } else if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        boardName.value = '';
+        boardDesc.value = '';
+
+        getBoards();
+    } catch (error) {
+        window.alert('Erro ao enviar dados: ' + error.message);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", getBoards);
 
