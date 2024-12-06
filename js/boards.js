@@ -61,9 +61,14 @@ function updateScreen(boards){
             deleteBoard(board.Id);
         });
 
-        // Adiciona o botão dentro do div.board-btns
-        card.querySelector('.board-btns').appendChild(deleteButton);
+        // Adicionando o botão "Deletar"
+        const editButton = document.createElement('button');
+        editButton.className = 'edit-btn';
+        editButton.innerHTML = '<i class="fa-solid fa-pen"></i>';
 
+        // Adiciona o botão dentro do div.board-btns
+        card.querySelector('.board-btns').appendChild(editButton);
+        card.querySelector('.board-btns').appendChild(deleteButton);
 
         cardsContainer.appendChild(card);
         document.getElementById(`${board.Id}`).addEventListener('click', function(){
