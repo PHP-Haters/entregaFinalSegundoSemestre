@@ -50,21 +50,26 @@ function updateScreen(boards){
             </div>
         `;
 
-        // Adicionando o botão "Deletar"
+        // Criando o botão "Deletar"
         const deleteButton = document.createElement('button');
         deleteButton.className = 'delete-btn';
         deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
 
         // Associando a função deleteBoard ao botão
-        deleteButton.addEventListener('click', function (event) {
+        deleteButton.addEventListener('click', (event) => {
             event.stopPropagation(); // Evita que o clique afete o evento do card
             deleteBoard(board.Id);
         });
 
-        // Adicionando o botão "Deletar"
+        // Criando o botão "Editar"
         const editButton = document.createElement('button');
         editButton.className = 'edit-btn';
         editButton.innerHTML = '<i class="fa-solid fa-pen"></i>';
+
+        // Associando a função editBoard ao botão
+        editButton.addEventListener('click', (event) => {
+            event.stopPropagation(); // Evita que o clique afete o evento do card
+        });
 
         // Adiciona o botão dentro do div.board-btns
         card.querySelector('.board-btns').appendChild(editButton);
