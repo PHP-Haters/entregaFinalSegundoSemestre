@@ -1,8 +1,7 @@
 .page-title{
     width: 100%;
-    margin: 70px 0;
+    margin: 60px 0 50px 0;
     text-align: center;
-
 }
 
 .grid-container{
@@ -97,6 +96,52 @@
 
 .board-btns .edit-btn{
     background-image: linear-gradient(
+    65deg,
+    hsl(206deg 78% 53%) 0%,
+    hsl(206deg 80% 52%) 7%,
+    hsl(206deg 81% 50%) 13%,
+    hsl(206deg 87% 49%) 18%,
+    hsl(205deg 95% 47%) 22%,
+    hsl(206deg 100% 46%) 27%,
+    hsl(206deg 100% 46%) 33%,
+    hsl(207deg 100% 46%) 39%,
+    hsl(208deg 100% 46%) 46%,
+    hsl(209deg 100% 46%) 55%,
+    hsl(210deg 100% 46%) 66%,
+    hsl(211deg 98% 47%) 80%,
+    hsl(213deg 90% 49%) 100%
+  );
+}
+
+.board-btns .edit-btn:hover{
+    background-image: none;
+    background-color: hsl(210deg 100% 46%) ;
+}
+
+#board-form{
+    padding: 0 30px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#board-form input{
+    background-color: #FFF;
+    border: 1px solid #ccc;
+}
+
+#board-form #board-name{
+    width: 20%;
+}
+
+#board-form #board-desc{
+    width: 65%;
+}
+
+#board-form input[type=submit]{
+    border: none;
+    background-image: linear-gradient(
     30deg,
     hsl(117deg 90% 26%) 0%,
     hsl(119deg 82% 29%) 12%,
@@ -112,9 +157,13 @@
     hsl(134deg 80% 47%) 87%,
     hsl(135deg 82% 48%) 100%
   );
+  font-weight: 600;
+  color: #FFF;
+  cursor: pointer;
+  transition: 0.4s all ease-in-out;
 }
 
-.board-btns .edit-btn:hover{
+#board-form input[type=submit]:hover{
     background-image: none;
     background-color: hsl(123deg 77% 33%);
 }
