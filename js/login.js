@@ -1,5 +1,6 @@
+import api from "./api.js";
+
 const errorMessage = document.getElementById('error-message');
-const loginForm = document.getElementById('login-form');
 const sendLogin = document.getElementById('btn-login');
 const form = document.querySelector('#login-form');
 
@@ -10,7 +11,7 @@ async function sendFormData(event){
     event.preventDefault();
     var email = document.getElementById('login-email').value;
 
-    var response = await loggin('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/GetPersonByEmail?Email='+email);
+    var response = await loggin(api + 'GetPersonByEmail?Email=' + email);
 
     errorMessage.textContent = 'Erro: ' + response.Errors[0];
 }

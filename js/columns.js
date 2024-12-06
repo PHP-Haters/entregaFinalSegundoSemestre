@@ -1,3 +1,5 @@
+import api from "./api.js";
+
 document.addEventListener("DOMContentLoaded", function () {
     fetchData().then(() => {
         geraItensPorColuna();
@@ -9,7 +11,7 @@ async function geraItensPorColuna() {
         const colunas = document.querySelectorAll('.column'); // Seleciona todos os elementos com a classe 'column'
 
         for (const coluna of colunas) {
-            const response = await fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/TasksByColumnId?ColumnId=' + `${coluna.id}`);
+            const response = await fetch(api + 'TasksByColumnId?ColumnId=' + `${coluna.id}`);
             const tasks = await response.json(); // Adiciona await para esperar a conversão para JSON
 
             const columnContainer = document.getElementById(`${coluna.id}`);
@@ -34,7 +36,7 @@ async function geraItensPorColuna() {
 async function fetchData() {
     try {
         const boardId = localStorage.getItem('boardId');
-        const response = await fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/ColumnByBoardId?BoardId=' + boardId); // Substitua com a URL da API
+        const response = await fetch(api + 'ColumnByBoardId?BoardId=' + boardId); // Substitua com a URL da API
         const items = await response.json();
 
         const cardsContainer = document.getElementById('cards-container');
@@ -58,7 +60,7 @@ async function criaNovaColuna() {
     var userId = JSON.parse(localStorage.getItem('usuario_logado')).Id;
     
     try {
-        const response = await fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Column', {
+        const response = await fetch(api + 'Column', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
