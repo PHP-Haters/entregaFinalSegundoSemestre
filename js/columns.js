@@ -9,22 +9,23 @@ document.addEventListener("DOMContentLoaded", function () {
 async function geraItensPorColuna() {
     try {
         const colunas = document.querySelectorAll('.column'); // Seleciona todos os elementos com a classe 'column'
+        console.log(colunas);
 
         for (const coluna of colunas) {
             const response = await fetch(api + 'TasksByColumnId?ColumnId=' + `${coluna.id}`);
             const tasks = await response.json(); // Adiciona await para esperar a conversão para JSON
 
-            const columnContainer = document.getElementById(`${coluna.id}`);
+            const p = document.getElementById(`${coluna.id}`);
 
             tasks.forEach(task => {
                 const item = document.createElement('p');
-                item.className = 'card column';
+                item.className = '';
                 item.id = `${task.Id}`;
                 item.innerHTML = `
                     <h3>${task.Name}</h3>
                     <hr />
                 `;
-                columnContainer.appendChild(item);
+                p.appendChild(item);
             });
         }
 
