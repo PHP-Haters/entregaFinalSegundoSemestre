@@ -66,7 +66,7 @@ body{
     font-size: 28px;
 }
 
-#login-form input, #login-form #btn-login{
+#login-form #btn-login{
     padding: 18px;
     background-color: #f4f4f4;
     border: none;

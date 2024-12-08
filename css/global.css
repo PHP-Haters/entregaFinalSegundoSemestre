@@ -59,17 +59,19 @@ header{
 }
 
 header nav{
-    width: 10%;
+    width: 12%;
     position: absolute;
-    left: 45%;
+    left: 44%;
     justify-content: space-between;
 }
 
 header nav a, header nav button{
     font-size: 17px;
+    transition: 0.5s all ease-in-out;
 }
 
 header nav a{
+    padding: 12px;
     color: #FFF;
     text-decoration: none;
 }
@@ -83,9 +85,17 @@ header nav button{
 }
 
 header .user-section{
+    padding: 10px 16px;
     position: absolute;
     right: 30px;
     justify-content: space-between;
+    transition: 0.5s all ease-in-out;
+}
+
+header .user-section:hover, header a:hover{
+    cursor: pointer;
+    background-color: hsla(0, 88%, 47%, 0.607);
+    border-radius: 10px;
 }
 
 header .user-section span, header .user-section i{
@@ -170,4 +180,12 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+input{
+    padding: 15px 18px;
+    background-color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
 }
