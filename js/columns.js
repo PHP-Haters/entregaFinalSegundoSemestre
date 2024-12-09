@@ -1,10 +1,30 @@
 import api from "./api.js";
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async() => {
+    const currentBoard = await getBoardById(localStorage.getItem('boardId'));
+    const pageTitle = document.querySelector('.page-title');
+
+    pageTitle.innerText += ` em ${currentBoard.Name}`;
+
+    console.log(currentBoard);
+    document.title = currentBoard.Name;
+
     getColumns().then(() => {
         // geraItensPorColuna();
     });
 });
+
+async function getBoardById(id){
+    try {
+        let response = await fetch(api + 'Board?BoardId=' + id);
+        const board = await response.json();
+
+        return board;
+    } catch (error) {
+        return error;
+    }
+}
+
 
 async function geraItensPorColuna() {
     try {
