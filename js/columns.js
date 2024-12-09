@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     const currentBoard = await getBoardById(localStorage.getItem('boardId'));
     const pageTitle = document.querySelector('.page-title');
 
-    pageTitle.innerText += ` em ${currentBoard.Name}`;
+    pageTitle.innerText += ` em "${currentBoard.Name}"`;
 
     console.log(currentBoard);
     document.title = currentBoard.Name;
