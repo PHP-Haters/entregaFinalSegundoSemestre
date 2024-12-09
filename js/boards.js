@@ -14,7 +14,7 @@ async function postBoard(event){
     let boardDesc = document.getElementById("board-desc");
 
     try {
-        const response = await fetch(api + 'Board', {
+        let response = await fetch(api + 'Board', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", getBoards);
 
 async function getBoards() {
     try {
-        const response = await fetch(api + 'Boards');
+        let response = await fetch(api + 'Boards');
         const items = await response.json();
 
         updateScreen(items);
@@ -58,7 +58,7 @@ async function getBoards() {
 
 async function deleteBoard(id) {
     try {
-        const response = await fetch(api + 'Board?BoardId=' + id, {
+        let response = await fetch(api + 'Board?BoardId=' + id, {
             method: 'DELETE',
         });
 
@@ -73,6 +73,86 @@ async function deleteBoard(id) {
     } catch (error) {
         console.error('Erro na requisição DELETE:', error);
         alert('Ocorreu um erro ao deletar o board. Tente novamente mais tarde.');
+    }
+}
+
+function editBoardModal(board){
+    const modalBg = document.getElementById('modal-bg');
+    const modal = document.getElementById('edit-board-modal');
+    const editBoardForm = document.getElementById('edit-board-form');
+    const editNameInput = document.getElementById('edit-board-name');
+    const editDescInput = document.getElementById('edit-board-desc');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const confirmBtn = document.getElementById('submit-edit-btn');
+
+    modalBg.style.display = 'flex';
+    modal.style.display = 'flex';
+
+    editNameInput.value = board.Name;
+    editDescInput.value = board.Description;
+
+    editBoardForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        sendData();
+    });
+    confirmBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        sendData();
+    });
+
+    cancelBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        closeModal();
+    })
+
+    async function sendData(){
+        const data = await putBoard(board.Id, board.CreatedBy, editNameInput.value, editDescInput.value);
+
+        if(data){
+            closeModal();
+            getBoards();
+        }
+    }
+
+    function closeModal(){
+        editNameInput.value = '';
+        editDescInput.value = '';
+
+        modalBg.style.display = 'none';
+        modal.style.display = 'none';
+    }
+}
+
+async function putBoard(id, createdBy, newName, newDesc){
+    try {
+        let response = await fetch(api + 'Board', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "Id": id,
+                "Name": newName,
+                "Description": newDesc,
+                "CreatedBy": createdBy,
+                "UpdatedBy": loggedUser.Id,
+            })
+        });
+
+        if (response.ok && response.headers.get('Content-Type')?.includes('application/json')) {
+            const res = await response.json();
+            if (res.Errors) {
+                console.log(res.Errors[0]);
+                throw new Error(res.Errors[0]);
+            }
+        } else if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP error! status: ${response.status}, body: ${errorText}`);
+        }
+
+        return response.ok;
+    } catch (error) {
+        window.alert('Erro ao enviar dados: ' + error.message);
     }
 }
 
@@ -112,6 +192,7 @@ function updateScreen(boards){
         // Associando a função editBoard ao botão
         editButton.addEventListener('click', (event) => {
             event.stopPropagation(); // Evita que o clique afete o evento do card
+            editBoardModal(board);
         });
 
         // Adiciona o botão dentro do div.board-btns
