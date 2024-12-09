@@ -50,7 +50,9 @@ async function getBoards() {
         let response = await fetch(api + 'Boards');
         const items = await response.json();
 
-        updateScreen(items);
+        const orderedArray = items.sort((a, b) => b.Id - a.Id);
+        
+        updateScreen(orderedArray);
     } catch (error) {
         console.error('Erro ao buscar dados:', error);
     }
