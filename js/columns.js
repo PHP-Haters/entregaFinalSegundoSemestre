@@ -1,8 +1,8 @@
 import api from "./api.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-    fetchData().then(() => {
-        geraItensPorColuna();
+    getColumns().then(() => {
+        // geraItensPorColuna();
     });
 });
 
@@ -34,26 +34,82 @@ async function geraItensPorColuna() {
     }
 }
 
-async function fetchData() {
+async function delColumn(id){
+    try {
+        let response = await fetch(api + 'Column?ColumnId=' + id, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            console.log(`Coluna ${id} deletado com sucesso.`);
+            
+            getColumns(); //Pega os boards novamente e atualiza a tela
+        } else {
+            console.error(`Erro ao deletar a coluna ${id}:`, response.statusText);
+            alert(`Erro ao deletar a coluna: ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error('Erro na requisição DELETE:', error);
+        alert('Ocorreu um erro ao deletar a coluna. Tente novamente mais tarde.');
+    }
+}
+
+async function getColumns() {
     try {
         const boardId = localStorage.getItem('boardId');
         const response = await fetch(api + 'ColumnByBoardId?BoardId=' + boardId); // Substitua com a URL da API
         const items = await response.json();
 
-        const cardsContainer = document.getElementById('cards-container');
-        items.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'card column';
-            card.id = `${item.Id}`;
-            card.innerHTML = `
-                <h3>${item.Name}</h3>
-                <hr />
-            `;
-            cardsContainer.appendChild(card);
-        });
+        const orderedColumns = items.sort((a, b) => b.Id - a.Id);
+
+        updateScreen(orderedColumns);
     } catch (error) {
         console.error('Erro ao buscar dados:', error);
     }
+}
+
+function updateScreen(columns){
+    const colsContainer = document.getElementById('columns-container');
+        columns.forEach(column => {
+            const col = document.createElement('div');
+            col.className = 'column';
+            col.id = `${column.Id}`;
+            col.innerHTML = `
+                <div class="column-head">
+                    <h3>${column.Name}</h3>
+                </div>
+                
+                <hr class="divisive"/>
+                <div class="tasks-holder"></div>
+            `;
+
+            // Criando o botão "Deletar"
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-btn';
+            deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+
+            // Associando a função deleteBoard ao botão
+            deleteButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Evita que o clique afete o evento do card
+                delColumn(column.Id);
+            });
+
+            // Criando o botão "Editar"
+            const editButton = document.createElement('button');
+            editButton.className = 'edit-btn';
+            editButton.innerHTML = '<i class="fa-solid fa-pen"></i>';
+
+            // Associando a função editBoard ao botão
+            editButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Evita que o clique afete o evento do card
+
+            });
+
+            col.querySelector('.column-head').appendChild(editButton);
+            col.querySelector('.column-head').appendChild(deleteButton);
+
+            colsContainer.appendChild(col);
+        });
 }
 
 async function criaNovaColuna() {
