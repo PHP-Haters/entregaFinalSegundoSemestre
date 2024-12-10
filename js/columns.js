@@ -1,6 +1,7 @@
 import api from "./api.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('h1_titulo_board').innerText = `${localStorage.getItem('tituloBoard')}`;
     fetchData().then(() => {
         geraItensPorColuna();
     });

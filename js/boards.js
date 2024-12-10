@@ -122,6 +122,8 @@ function updateScreen(boards){
         document.getElementById(`${board.Id}`).addEventListener('click', function(){
             localStorage.removeItem('boardId');
             localStorage.setItem('boardId', `${board.Id}`);
+            localStorage.removeItem('tituloBoard');
+            localStorage.setItem('tituloBoard', `${board.Name}`);
             window.location.href = 'columns.html';
         })
     });
