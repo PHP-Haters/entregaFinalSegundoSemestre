@@ -1,9 +1,16 @@
 import api from "./api.js";
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('h1_titulo_board').innerText = `${localStorage.getItem('tituloBoard')}`;
-    fetchData().then(() => {
-        geraItensPorColuna();
+document.addEventListener("DOMContentLoaded", async() => {
+    const currentBoard = await getBoardById(localStorage.getItem('boardId'));
+    const pageTitle = document.querySelector('.page-title');
+
+    pageTitle.innerText += ` em "${currentBoard.Name}"`;
+
+    console.log(currentBoard);
+    document.title = currentBoard.Name;
+
+    getColumns().then(() => {
+        // geraItensPorColuna();
     });
 });
 
