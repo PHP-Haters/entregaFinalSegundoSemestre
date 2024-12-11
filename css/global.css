@@ -247,3 +247,24 @@ input, button{
     background-image: none;
     background-color: hsl(210deg 100% 46%) ;
 }
+
+#board-form, #col-form{
+    padding: 0 30px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#board-form input, #col-form input{
+    background-color: #FFF;
+    border: 1px solid #ccc;
+}
+
+#board-form #board-name, #col-form #col-name{
+    width: 20%;
+}
+
+#board-form #board-desc{
+    width: 65%;
+}

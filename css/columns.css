@@ -40,3 +40,31 @@
     border: none;
 }
 
+#col-form input[type=text]{
+    width: 80% !important;
+}
+
+#col-form input[type=submit]{
+    border: none;
+    background-image: linear-gradient(
+    30deg,
+    hsl(117deg 90% 26%) 0%,
+    hsl(119deg 82% 29%) 12%,
+    hsl(121deg 78% 31%) 22%,
+    hsl(123deg 77% 33%) 30%,
+    hsl(124deg 77% 35%) 37%,
+    hsl(125deg 76% 37%) 43%,
+    hsl(127deg 76% 39%) 48%,
+    hsl(128deg 77% 40%) 54%,
+    hsl(130deg 77% 42%) 60%,
+    hsl(131deg 78% 44%) 68%,
+    hsl(132deg 79% 45%) 76%,
+    hsl(134deg 80% 47%) 87%,
+    hsl(135deg 82% 48%) 100%
+  );
+  font-weight: 600;
+  color: #FFF;
+  cursor: pointer;
+  transition: 0.4s all ease-in-out;
+}
+

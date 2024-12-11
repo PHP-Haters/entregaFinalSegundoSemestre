@@ -24,7 +24,13 @@ async function getBoardById(id){
         return error;
     }
 }
-
+document.getElementById('col-form').addEventListener('submit', (event) => {
+    event.preventDefault()
+})
+document.getElementById('submit-col').addEventListener('click', (event)=>{
+    event.preventDefault();
+    createCol();
+});
 
 async function geraItensPorColuna() {
     try {
@@ -90,6 +96,8 @@ async function getColumns() {
 
 function updateScreen(columns){
     const colsContainer = document.getElementById('columns-container');
+    colsContainer.innerHTML = '';
+
         columns.forEach(column => {
             const col = document.createElement('div');
             col.className = 'column';
@@ -132,9 +140,10 @@ function updateScreen(columns){
         });
 }
 
-async function criaNovaColuna() {
+async function createCol() {
     var boardId = localStorage.getItem('boardId');
     var userId = JSON.parse(localStorage.getItem('usuario_logado')).Id;
+    let colName = document.querySelector('#column-name').value;
     
     try {
         const response = await fetch(api + 'Column', {
@@ -144,8 +153,8 @@ async function criaNovaColuna() {
             },
             body: JSON.stringify({
                 "BoardId": boardId,
-                "Name": "teste",
-                "Position": "0",
+                "Name": colName,
+                "Position": 1,
                 "IsActive": "true",
                 "CreatedBy": userId,
                 "UpdatedBy": userId
@@ -157,8 +166,8 @@ async function criaNovaColuna() {
         }
 
         const result = await response.json(); // Assumindo que a API retorna dados em formato JSON
-
-        return result;
+        
+        getColumns();
     } catch (error) {
         console.error('Erro ao enviar dados:', error);
     }
